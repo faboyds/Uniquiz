@@ -36,18 +36,31 @@ public class Quiz implements Serializable {
 
     private long popularityCounter;
 
+    private int numQuestionsPerSolution;
+
+    private int totalNumQuestions;
+
+    private double averageRating;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "QUIZ_PK")
+    private List<Rating> ratings;
+
     public Quiz() {
         questions = new LinkedList<>();
     }
 
-    public Quiz(Difficulty difficulty, Long subjectPk, String subjectName, Long coursePk, String courseName, String title) {
-        this.difficulty = difficulty;
-        this.subjectPk = subjectPk;
-        this.subjectName = subjectName;
-        this.coursePk = coursePk;
-        this.courseName = courseName;
-        this.title = title;
-        this.questions = new LinkedList<>();
+    public Quiz(Difficulty difficulty, Long subjectPk, String subjectName, Long coursePk,
+                String courseName, String title, int numQuestionsPerSolution, List<Question> questions) {
+
+        setDifficulty(difficulty);
+        setSubjectPk(subjectPk);
+        setSubjectName(subjectName);
+        setCoursePk(coursePk);
+        setCourseName(courseName);
+        setTitle(title);
+        setQuestions(questions);
+        setNumQuestionsPerSolution(numQuestionsPerSolution);
     }
 
     public Long getPk() {
@@ -71,6 +84,7 @@ public class Quiz implements Serializable {
     }
 
     public void setSubjectPk(Long subjectPk) {
+        if(subjectPk < 1) throw new IllegalArgumentException("Subject pk must not be null.");
         this.subjectPk = subjectPk;
     }
 
@@ -79,6 +93,7 @@ public class Quiz implements Serializable {
     }
 
     public void setCoursePk(Long coursePk) {
+        if(coursePk < 1) throw new IllegalArgumentException("Course pk must not be null.");
         this.coursePk = coursePk;
     }
 
@@ -87,6 +102,7 @@ public class Quiz implements Serializable {
     }
 
     public void setTitle(String title) {
+        if(title == null || title.isEmpty()) throw new IllegalArgumentException("The quiz must have a title.");
         this.title = title;
     }
 
@@ -100,14 +116,11 @@ public class Quiz implements Serializable {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+        this.totalNumQuestions = questions.size();
     }
 
     public long getPopularityCounter() {
         return popularityCounter;
-    }
-
-    public void setPopularityCounter(long popularityCounter) {
-        this.popularityCounter = popularityCounter;
     }
 
     public List<Question> getQuestions() {
@@ -124,6 +137,37 @@ public class Quiz implements Serializable {
 
     public void incrementPopularity(){
         this.popularityCounter++;
+    }
+
+    public int getNumQuestionsPerSolution() {
+        return numQuestionsPerSolution;
+    }
+
+    public void setNumQuestionsPerSolution(int numQuestionsPerSolution) {
+        if(numQuestionsPerSolution < 0 || numQuestionsPerSolution > totalNumQuestions)
+            throw new IllegalArgumentException("To resolve a quiz, must be shown at least 1 question and less than the total question.");
+        this.numQuestionsPerSolution = numQuestionsPerSolution;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public int getTotalNumQuestions() {
+        return totalNumQuestions;
+    }
+
+    public void addRating(Rating rating){
+        averageRating = (averageRating * ratings.size() + rating.getValue()) / (ratings.size()+1);
+        ratings.add(rating);
     }
 
     @Override
@@ -146,6 +190,6 @@ public class Quiz implements Serializable {
         for(Question q : this.questions){
             questions.add(q.toDTO());
         }
-        return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter);
+        return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating);
     }
 }

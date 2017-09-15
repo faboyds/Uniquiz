@@ -100,11 +100,8 @@ public class DemoBootstrap {
         subject6 = subjectRepository.save(subject6);
 
 
-        //CREATE QUIZZES
+        //CREATE QUIZZES ----------------------------------------------------------------------------------------------------------
         QuizRepository quizRepository = new QuizRepository();
-
-        Quiz quiz = new Quiz(Difficulty.NORMAL, subject5.getPk(), subject5.getSubjectName(),
-                course1.getPk(), course1.getCourseName(), "Princípios da computação I");
 
         List<Question> questionList = new ArrayList<>();
 
@@ -163,12 +160,11 @@ public class DemoBootstrap {
         question5.setAnswers(answerList5);
         questionList.add(question5);
 
-        quiz.setQuestions(questionList);
+        Quiz quiz = new Quiz(Difficulty.NORMAL, subject5.getPk(), subject5.getSubjectName(),
+                course1.getPk(), course1.getCourseName(), "Princípios da computação I", questionList.size(), questionList);
 
         quizRepository.save(quiz);
-
-        Quiz quiz2 = new Quiz(Difficulty.HARD, subject6.getPk(), subject6.getSubjectName(),
-                course1.getPk(), course1.getCourseName(), "Redes de computadores");
+        //SAVED QUIZ 1 -----------------------------------------------------------------------------------------------------
 
         questionList.clear();
 
@@ -212,8 +208,10 @@ public class DemoBootstrap {
         question5.setAnswers(answerList5);
         questionList.add(question5);
 
-        quiz2.setQuestions(questionList);
+        Quiz quiz2 = new Quiz(Difficulty.HARD, subject6.getPk(), subject6.getSubjectName(),
+                course1.getPk(), course1.getCourseName(), "Redes de computadores", questionList.size(), questionList);
 
         quizRepository.save(quiz2);
+        //SAVED QUIZ 2 ------------------------------------------------------------------------------------------------------
     }
 }

@@ -11,7 +11,7 @@
         <class>model.Subject</class>
         <class>model.User</class>
         <class>model.UserStatistics</class>
-
+        <class>model.Rating</class>
         <class>util.LocalDateTimeConverter</class>
 
         <properties>

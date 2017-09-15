@@ -11,15 +11,17 @@ public class SimplifiedQuizDTO {
     private String subjectName;
     private Long coursePk;
     private String title;
+    private Double averageRating;
 
     public SimplifiedQuizDTO(Long pk, String difficulty, Long subjectPk,
-                            String subjectName, Long coursePk, String title){
+                            String subjectName, Long coursePk, String title, double averageRating){
         this.setPk(pk);
         this.setDifficulty(difficulty);
         this.setSubjectPk(subjectPk);
         this.setSubjectName(subjectName);
         this.setCoursePk(coursePk);
         this.setTitle(title);
+        this.setAverageRating(averageRating);
     }
 
     public Long getPk() {
@@ -68,5 +70,13 @@ public class SimplifiedQuizDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
     }
 }
