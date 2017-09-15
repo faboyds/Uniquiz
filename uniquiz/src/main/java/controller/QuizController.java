@@ -2,6 +2,7 @@ package controller;
 
 import dto.QuizDTO;
 import model.Quiz;
+import model.Rating;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,20 +84,24 @@ public class QuizController {
             }
 
             QuizRepository repo = new QuizRepository();
-            quiz = repo.save(quiz);
+
+            Quiz newQuiz = new Quiz(quiz);
+            quiz = repo.save(newQuiz);
 
             return new ResponseEntity<>(quiz.toDTO(), HttpStatus.CREATED);
 
         }catch (DataIntegrityViolationException e){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }catch(IllegalArgumentException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<QuizDTO> update(@RequestBody Quiz quiz) {
+    @RequestMapping(method = RequestMethod.PUT, value = "/{quizPk}")
+    public ResponseEntity<QuizDTO> update(@PathVariable Long quizPk, @RequestBody Quiz quiz) {
         try {
             QuizRepository repo = new QuizRepository();
-            Quiz newQuiz = repo.findOne(quiz.getPk()).get();
+            Quiz newQuiz = repo.findOne(quizPk).get();
 
             newQuiz.setPk(quiz.getPk());
             newQuiz.setCoursePk(quiz.getCoursePk());
@@ -104,6 +109,25 @@ public class QuizController {
             newQuiz.setPopularityCounter(quiz.getPopularityCounter());
             newQuiz.setQuestions(quiz.getQuestions());
             newQuiz.setTitle(quiz.getTitle());
+
+            newQuiz = repo.save(newQuiz);
+
+            return new ResponseEntity<>(newQuiz.toDTO(), HttpStatus.OK);
+
+        }catch (DataIntegrityViolationException e){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }catch (IllegalArgumentException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/rate/{quizPk}")
+    public ResponseEntity<QuizDTO> rateQuiz(@PathVariable Long quizPk, @RequestBody Rating rating) {
+        try {
+            QuizRepository repo = new QuizRepository();
+            Quiz newQuiz = repo.findOne(quizPk).get();
+
+            newQuiz.addRating(rating);
 
             newQuiz = repo.save(newQuiz);
 

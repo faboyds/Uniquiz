@@ -61,11 +61,11 @@ public class SubjectController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<SubjectDTO> update(@RequestBody Subject subject) {
+    @RequestMapping(method = RequestMethod.PUT, value = "/{subjectPk}")
+    public ResponseEntity<SubjectDTO> update(@PathVariable Long subjectPk, @RequestBody Subject subject) {
         try {
             SubjectRepository repo = new SubjectRepository();
-            Subject newSubject = repo.findOne(subject.getPk()).get();
+            Subject newSubject = repo.findOne(subjectPk).get();
 
             newSubject.setPk(subject.getPk());
             newSubject.setSubjectName(subject.getSubjectName());

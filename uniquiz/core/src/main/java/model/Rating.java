@@ -19,13 +19,13 @@ public class Rating {
 
     private int value;
 
-    private int userPk;
+    private String userPk;
 
     public Rating() {
         //for your ORM eyez only
     }
 
-    public Rating(int value, int userPk) {
+    public Rating(int value, String userPk) {
         if(value < 1 || value > 5){
             throw new IllegalArgumentException("The rate must be between 1 and 5.");
         }
@@ -41,11 +41,11 @@ public class Rating {
         this.value = value;
     }
 
-    public int getUserPk() {
+    public String getUserPk() {
         return userPk;
     }
 
-    public void setUserPk(int userPk) {
+    public void setUserPk(String userPk) {
         this.userPk = userPk;
     }
 

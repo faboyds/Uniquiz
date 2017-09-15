@@ -63,6 +63,19 @@ public class Quiz implements Serializable {
         setNumQuestionsPerSolution(numQuestionsPerSolution);
     }
 
+    public Quiz(Quiz otherQuiz){
+        setDifficulty(otherQuiz.difficulty);
+        setSubjectPk(otherQuiz.subjectPk);
+        setSubjectName(otherQuiz.subjectName);
+        setCoursePk(otherQuiz.coursePk);
+        setCourseName(otherQuiz.courseName);
+        setTitle(otherQuiz.title);
+        setQuestions(otherQuiz.questions);
+        setNumQuestionsPerSolution(otherQuiz.numQuestionsPerSolution);
+        setPopularityCounter(otherQuiz.popularityCounter);
+        setRatings(otherQuiz.ratings);
+    }
+
     public Long getPk() {
         return pk;
     }
@@ -170,6 +183,13 @@ public class Quiz implements Serializable {
         ratings.add(rating);
     }
 
+    private boolean existsRatingFromUser(String userPk){
+        for(Rating r : ratings){
+            if(r.getUserPk().equals(userPk)) return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -191,5 +211,9 @@ public class Quiz implements Serializable {
             questions.add(q.toDTO());
         }
         return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating);
+    }
+
+    public void setPopularityCounter(long popularityCounter) {
+        this.popularityCounter = popularityCounter;
     }
 }
