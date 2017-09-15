@@ -6,17 +6,7 @@
 # Maven
 log/
 target/
-core/target/classes/dto/AnswerDTO.class
-core/target/classes/dto/CourseDTO.class
-core/target/classes/dto/FieldDTO.class
-core/target/classes/dto/QuestionDTO.class
-core/target/classes/dto/QuizDTO.class
-core/target/classes/dto/SolutionDTO.class
-core/target/classes/dto/SubjectDTO.class
-core/target/classes/model/User$Roles.class
-core/target/generated-sources/
-src/main/resources/
-src/test/
+core/target
 db/
 db/*
 target/classes/controller/
