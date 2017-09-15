@@ -179,14 +179,24 @@ public class Quiz implements Serializable {
     }
 
     public void addRating(Rating rating){
-        averageRating = (averageRating * ratings.size() + rating.getValue()) / (ratings.size()+1);
-        ratings.add(rating);
+        boolean found  = false;
+        String userPk = rating.getUserPk();
+        for(Rating r : ratings){
+            if(r.getUserPk().equals(userPk)) {
+                int diff = rating.getValue() - r.getValue();
+                r.setValue(rating.getValue());
+                averageRating  = (averageRating + ratings.size() + diff ) / ratings.size();
+                found = true;
+                break ;
+            }
+        }
+        if (!found) {
+            averageRating = (averageRating * ratings.size() + rating.getValue()) / (ratings.size()+1);
+            ratings.add(rating);
+        }
     }
 
     private boolean existsRatingFromUser(String userPk){
-        for(Rating r : ratings){
-            if(r.getUserPk().equals(userPk)) return true;
-        }
         return false;
     }
 
