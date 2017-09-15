@@ -32,6 +32,7 @@
 		66ECE93D1F655678005F9AE2 /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ECE93C1F655678005F9AE2 /* CoursesTableViewCell.swift */; };
 		66ECE93F1F655772005F9AE2 /* QuizFromCourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ECE93E1F655771005F9AE2 /* QuizFromCourseTableViewController.swift */; };
 		66ECE9431F6561F2005F9AE2 /* QuizzesFromSubjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ECE9421F6561F2005F9AE2 /* QuizzesFromSubjectTableViewController.swift */; };
+		66F254AA1F689FD200C750DE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F254A91F689FD200C750DE /* Utils.swift */; };
 		827DEF7827455B4992D00FC2 /* Pods_UniQuiziOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1245ECD7542F7412F5534D83 /* Pods_UniQuiziOSTests.framework */; };
 		AB55C4732EF2FAD3002E86D1 /* Pods_UniQuiziOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26D70FA480C081D28C6DE01 /* Pods_UniQuiziOSUITests.framework */; };
 		D809D743FF16C3AF89E217B4 /* Pods_UniQuiziOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2966502B51BE1D4936869DC6 /* Pods_UniQuiziOS.framework */; };
@@ -103,6 +104,7 @@
 		66ECE93C1F655678005F9AE2 /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
 		66ECE93E1F655771005F9AE2 /* QuizFromCourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizFromCourseTableViewController.swift; sourceTree = "<group>"; };
 		66ECE9421F6561F2005F9AE2 /* QuizzesFromSubjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesFromSubjectTableViewController.swift; sourceTree = "<group>"; };
+		66F254A91F689FD200C750DE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		865CB470B6C9CAE30935271E /* Pods-UniQuiziOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniQuiziOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniQuiziOSUITests/Pods-UniQuiziOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9D1616CF111244B580CAA9AE /* Pods-UniQuiziOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniQuiziOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniQuiziOSTests/Pods-UniQuiziOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF4425A6B9B10CA2AD20946C /* Pods-UniQuiziOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniQuiziOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniQuiziOSTests/Pods-UniQuiziOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				66ECE93C1F655678005F9AE2 /* CoursesTableViewCell.swift */,
 				66ECE93E1F655771005F9AE2 /* QuizFromCourseTableViewController.swift */,
 				66ECE9421F6561F2005F9AE2 /* QuizzesFromSubjectTableViewController.swift */,
+				66F254A91F689FD200C750DE /* Utils.swift */,
 			);
 			path = UniQuiziOS;
 			sourceTree = "<group>";
@@ -499,11 +502,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UniQuiziOS/Pods-UniQuiziOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ASPCircleChart/ASPCircleChart.framework",
+				"${BUILT_PRODUCTS_DIR}/PieCharts/PieCharts.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASPCircleChart.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PieCharts.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -547,6 +550,7 @@
 				66BBD3071F630A3A00AF1351 /* QuizViewController.swift in Sources */,
 				663C489B1F62A4F300D2CD8F /* FirstViewController.swift in Sources */,
 				6616CB4E1F65520400AE688C /* CoursesTableViewController.swift in Sources */,
+				66F254AA1F689FD200C750DE /* Utils.swift in Sources */,
 				66BBD3091F639A0500AF1351 /* LoginViewController.swift in Sources */,
 				663C48C91F62A54F00D2CD8F /* HomeViewController.swift in Sources */,
 				6616CB4A1F65398B00AE688C /* CoursesCollectionViewController.swift in Sources */,

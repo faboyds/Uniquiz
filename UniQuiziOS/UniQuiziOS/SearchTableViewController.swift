@@ -15,7 +15,6 @@ class SearchTableViewController: UITableViewController , UISearchBarDelegate{
     @IBOutlet weak var searchBar: UISearchBar!
     func doSearch(){
         self.view.endEditing(true)
-
         guard let text = searchBar.text else {return}
         guard let url = URL(string: Properties.getSearchURL(toSearch: String(text))) else {return}
         print(url)
@@ -76,7 +75,6 @@ class SearchTableViewController: UITableViewController , UISearchBarDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "quizzesCell", for: indexPath) as? SearchTableViewCell else {fatalError()}
         
-        cell.quizCourse.text = quizArray[indexPath.row].subjectName
         cell.quizName.text = quizArray[indexPath.row].title
         cell.quizTheme.text = quizArray[indexPath.row].difficulty
         
@@ -94,6 +92,8 @@ class SearchTableViewController: UITableViewController , UISearchBarDelegate{
                 return
             }
             destination?.quiz = self.quizArray[indexPath.row]
+           destination?.hidesBottomBarWhenPushed = true;
+
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

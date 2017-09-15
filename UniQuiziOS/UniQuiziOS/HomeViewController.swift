@@ -7,18 +7,20 @@
 //
 
 import UIKit
-
-
+import PieCharts
 class HomeViewController: UIViewController {
 
+    @IBOutlet var graphOne: PieChart!
+    @IBOutlet var graphTwo: PieChart!
     
     override func viewWillAppear(_ animated: Bool) {
         getUser()
+
         
     }
     
     func getUser(){
-        guard let url = URL(string: Properties.getUser(user: (Properties.user?.email)!)) else {return}
+        guard let url = URL(string: Properties.getUser(user: (Properties.user?.username)!)) else {return}
         print(url)
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
@@ -29,9 +31,13 @@ class HomeViewController: UIViewController {
         if let data = data {
         do{
         let user = try  JSONDecoder().decode(User.self, from: data)
-            Properties.user = user
+        Properties.user = user
         DispatchQueue.main.sync {
             self.updateFields()
+            self.loadView()
+            self.updateFields()
+
+
             }
         }
         
@@ -45,17 +51,28 @@ class HomeViewController: UIViewController {
     }
 
 func updateFields(){
+    var models = [PieSliceModel]()
+    models.append(PieSliceModel(value: Double((Properties.user?.userStatistics.totalWrongAnswers)!), color: UIColor(hexString: "#FBC02D")))
+    models.append(PieSliceModel(value: Double((Properties.user?.userStatistics.totalRightAnswers)!), color: UIColor(hexString: "#4CAF50")))
+    graphOne.models = models
+    var models2 = [PieSliceModel]()
+    models2.append(PieSliceModel(value: Double((Properties.user?.userStatistics.totalQuizzesPassed)!), color: UIColor(hexString: "#4CAF50")))
+    models2.append(PieSliceModel(value: Double((Properties.user?.userStatistics.totalQuizzesSolved)! - (Properties.user?.userStatistics.totalQuizzesPassed)!), color: UIColor(hexString: "#FBC02D")))
+    graphTwo.models = models2
     totalQuizzesPassed.text = String((Properties.user?.userStatistics.totalQuizzesPassed)!)
     totalQuizzesSolved.text = String((Properties.user?.userStatistics.totalQuizzesSolved)!)
     wrongAnswers.text = String((Properties.user?.userStatistics.totalWrongAnswers)!)
     rightAnswers.text = String((Properties.user?.userStatistics.totalRightAnswers)!)
     
 }
-
+    
     @IBOutlet weak var totalQuizzesPassed: UILabel!
     @IBOutlet weak var totalQuizzesSolved: UILabel!
     @IBOutlet weak var wrongAnswers: UILabel!
     @IBOutlet weak var rightAnswers: UILabel!
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFields()
@@ -67,6 +84,7 @@ func updateFields(){
     }
     
 
+    
     /*
     // MARK: - Navigation
 

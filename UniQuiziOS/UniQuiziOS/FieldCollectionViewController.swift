@@ -89,8 +89,8 @@ class FieldCollectionViewController: UICollectionViewController {
         cell.fieldText.text = field[indexPath.row].fieldName
         cell.fieldText.textColor = UIColor.white
         cell.fieldImage.image = UIImage(named: "SubjectImage") //GetFieldImages
-        cell.backgroundColor = UIColor.orange
-    
+        cell.backgroundColor = UIColor(hexString: "#FFA000")
+        cell.layer.cornerRadius = 10
         return cell
     }
     
@@ -103,6 +103,7 @@ class FieldCollectionViewController: UICollectionViewController {
             return
         }
         destination.fieldPk =  field[indexPath.row].pk
+        destination.hidesBottomBarWhenPushed = true;
     }
 
     // MARK: UICollectionViewDelegate

@@ -89,7 +89,8 @@ class CoursesCollectionViewController: UICollectionViewController {
         cell.courseText.text = subjects[indexPath.row].subjectName
        cell.courseImage.image = UIImage(named : "SubjectImage") //GetImage
         cell.courseText.textColor = UIColor.white
-        cell.backgroundColor = UIColor.orange
+        cell.backgroundColor = UIColor(hexString: "#FFA000")
+        cell.layer.cornerRadius = 10
         return cell
     }
     
@@ -102,6 +103,7 @@ class CoursesCollectionViewController: UICollectionViewController {
             return
         }
         destination.subjectPk =  subjects[indexPath.row].pk
+        destination.hidesBottomBarWhenPushed = true;
     }
 
     // MARK: UICollectionViewDelegate
