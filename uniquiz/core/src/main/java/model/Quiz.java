@@ -185,7 +185,7 @@ public class Quiz implements Serializable {
             if(r.getUserPk().equals(userPk)) {
                 int diff = rating.getValue() - r.getValue();
                 r.setValue(rating.getValue());
-                averageRating  = (averageRating + ratings.size() + diff ) / ratings.size();
+                averageRating  = (averageRating * ratings.size() + diff ) / ratings.size();
                 found = true;
                 break ;
             }
@@ -196,9 +196,7 @@ public class Quiz implements Serializable {
         }
     }
 
-    private boolean existsRatingFromUser(String userPk){
-        return false;
-    }
+    
 
     @Override
     public boolean equals(Object o) {
