@@ -29,6 +29,8 @@ public class Question implements Serializable {
     @JoinColumn(name = "QUESTION_PK")
     private List<Answer> answers;
 
+    private String justification;
+
     public Question() {
         answers = new LinkedList<>();
     }
@@ -62,6 +64,14 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
+    public String getJustification() {
+        return justification;
+    }
+
+    public void setJustification(String justification) {
+        this.justification = justification;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,6 +92,6 @@ public class Question implements Serializable {
         for(Answer a : this.answers){
             answers.add(a.toDTO());
         }
-        return new QuestionDTO(this.pk, this.question, answers);
+        return new QuestionDTO(this.pk, this.question, answers, justification);
     }
 }

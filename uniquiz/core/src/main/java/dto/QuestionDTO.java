@@ -10,6 +10,14 @@ public class QuestionDTO {
     private Long pk;
     private String question;
     private List<AnswerDTO> answers;
+    private String justification;
+
+    public QuestionDTO(Long pk, String question, List<AnswerDTO> answers, String justification){
+        this.setPk(pk);
+        this.setQuestion(question);
+        this.setAnswers(answers);
+        this.setJustification(justification);
+    }
 
     public QuestionDTO(Long pk, String question, List<AnswerDTO> answers){
         this.setPk(pk);
@@ -42,5 +50,13 @@ public class QuestionDTO {
 
     public void setAnswers(List<AnswerDTO> answers) {
         this.answers = answers;
+    }
+
+    public String getJustification() {
+        return justification;
+    }
+
+    public void setJustification(String justification) {
+        this.justification = justification;
     }
 }
