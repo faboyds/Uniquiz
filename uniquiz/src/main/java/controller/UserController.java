@@ -32,12 +32,12 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{email}")
-    public ResponseEntity<UserDTO> findOne(@PathVariable String email ) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{username}")
+    public ResponseEntity<UserDTO> findOne(@PathVariable String username ) {
         try {
             UserRepository repo = new UserRepository();
 
-            UserDTO user = repo.findOne(email).get().toDTO();
+            UserDTO user = repo.findByUsername(username).toDTO();
 
             return new ResponseEntity<>(user, HttpStatus.OK);
         }catch (NoResultException e){

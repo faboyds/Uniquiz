@@ -17,4 +17,10 @@ public class UserRepository extends BaseRepository<User, String> {
         return matchOne("e.username=:a AND e.password=:b", m);
     }
 
+    public User findByUsername(String username){
+        Map<String, Object> m = new HashMap<>();
+        m.put("a", username);
+        return matchOne("e.username=:a", m);
+    }
+
 }
