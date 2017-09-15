@@ -11,7 +11,6 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var quizTheme: UILabel!
-    @IBOutlet weak var quizCourse: UILabel!
     @IBOutlet weak var quizName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

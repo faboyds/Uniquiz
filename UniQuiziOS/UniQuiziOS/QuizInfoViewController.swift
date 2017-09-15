@@ -10,11 +10,19 @@ import UIKit
 
 class QuizInfoViewController: UIViewController {
 
+    
+    @IBOutlet var fiveStars: UIButton!
+    @IBOutlet var fourStar: UIButton!
+    @IBOutlet var threeStars: UIButton!
+    @IBOutlet var twoStar: UIButton!
+    @IBOutlet var oneStar: UIButton!
     @IBOutlet weak var wrongAnswers: UILabel!
     @IBOutlet weak var dificultyLabel: UILabel!
     @IBOutlet weak var quizNameLabel: UILabel!
     @IBOutlet weak var righttAnswers: UILabel!
+    var stars = 0
     var quiz : SimplifiedQuiz?
+    @IBOutlet var startingButton: UIButton!
     var solution : Solution?
     var fullQuiz : Quiz?
     var loadedFullQuiz = false
@@ -70,6 +78,9 @@ class QuizInfoViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        startingButton.layer.cornerRadius = 15
+        startingButton.layer.borderWidth = 1.0
+        startingButton.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
         wrongAnswers.text = "0"
         righttAnswers.text = "0"
         getPrevSolution()
@@ -98,6 +109,91 @@ class QuizInfoViewController: UIViewController {
         }
     }
 
+    @IBAction func onOneStarSelected(_ sender: UIButton) {
+        if stars == 0 { oneStar.setImage(UIImage(named : "icon"), for: UIControlState.normal) }
+        else if stars > 1 {
+            twoStar.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+            if stars > 2{
+                threeStars.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                if stars > 3 {
+                    fourStar.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                    if stars > 4{
+                        fiveStars.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                    }
+                    
+                }
+            }
+            
+        }
+        stars = 1
+    }
+    
+    
+    @IBAction func onTwoStarSelected(_ sender: UIButton) {
+        if stars  < 2  {
+            oneStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+            twoStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        }
+            if stars > 2{
+                threeStars.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                if stars > 3 {
+                    fourStar.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                    if stars > 4{
+                        fiveStars.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                    
+                    
+                }
+            }
+            
+        }
+        stars = 2
+    }
+    
+    
+    
+    
+    @IBAction func onThreeStarSelected(_ sender: UIButton) {
+        if stars < 3 {
+            oneStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+            twoStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+            threeStars.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        }
+            if stars > 3 {
+                fourStar.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                if stars > 4{
+                    fiveStars.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+                    
+                    
+                }
+            
+            
+        }
+        stars = 3
+    }
+    
+    @IBAction func onFourStarSelected(_ sender: UIButton) {
+        if stars < 4 {
+            oneStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+            twoStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+            threeStars.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+            fourStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+
+        }
+            if stars > 4{
+                fiveStars.setImage(UIImage(named : "icon3"), for: UIControlState.normal)
+            }
+        stars = 4
+        
+    }
+    
+    @IBAction func onFiveStarSelected(_ sender: UIButton) {
+        oneStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        twoStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        threeStars.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        fourStar.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        fiveStars.setImage(UIImage(named : "icon"), for: UIControlState.normal)
+        stars = 5
+    }
     /*
     // MARK: - Navigation
 

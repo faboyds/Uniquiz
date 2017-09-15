@@ -48,7 +48,14 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>93c8ed17.ngrok.io</key>
+			<key>192.168.1.255</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludeSubdomains</key>
+				<true/>
+			</dict>
+			<key>8f76071b.ngrok.io</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

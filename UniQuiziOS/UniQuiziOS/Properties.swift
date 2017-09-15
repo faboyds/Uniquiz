@@ -14,7 +14,7 @@ class Properties {
     static var user : User?
     
     fileprivate static func  getURLBase() -> String {
-        return "http://93c8ed17.ngrok.io/uniquiz"
+        return "http://8f76071b.ngrok.io/uniquiz"
     }
     
     static func getSubjectURL() -> String {
@@ -45,7 +45,7 @@ class Properties {
     }
     
     static func getUser(user : String) -> String {
-        return getURLBase() + "/user/\(user)"
+        return getURLBase() + "/users/\(user)"
     }
     
     static func getSolutionsURL(quizPk: String, user :  String) -> String {

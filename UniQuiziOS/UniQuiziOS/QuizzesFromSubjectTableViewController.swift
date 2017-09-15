@@ -72,7 +72,6 @@ class QuizzesFromSubjectTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quizzesCell", for: indexPath) as! SearchTableViewCell
         
         cell.quizName.text = quizzes[indexPath.row].title
-        cell.quizCourse.text = quizzes[indexPath.row].subjectName
         cell.quizTheme.text = quizzes[indexPath.row].difficulty
         return cell
     }

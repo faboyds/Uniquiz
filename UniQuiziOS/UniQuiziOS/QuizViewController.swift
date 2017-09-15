@@ -24,8 +24,11 @@ class QuizViewController: UIViewController {
     var actualPage = 0
     var revision = false
     var selectedAnswers = [Int]()
-    
-    
+    var notAnswerColor = UIColor(hexString : "#FDD835")
+    var selectedColor = UIColor(hexString: "#006064")
+    var rightColor = UIColor(hexString: "#AED581")
+    var wrongColor = UIColor(hexString: "#FF7043")
+    var unselectedColor = UIColor(hexString : "#00BDEE")
     func sendResolution(_ resolution : SolutionPost){
         //Post
         
@@ -96,19 +99,19 @@ class QuizViewController: UIViewController {
     
     func checkIfSelected(){
         
-        answerOne.backgroundColor = UIColor.white
-        answerTwo.backgroundColor = UIColor.white
-        answerThree.backgroundColor = UIColor.white
-        answerFour.backgroundColor = UIColor.white
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = unselectedColor
         switch selectedAnswers[actualPage] {
         case 1:
-            answerOne.backgroundColor = UIColor.green
+            answerOne.backgroundColor = selectedColor
         case 2:
-            answerTwo.backgroundColor = UIColor.green
+            answerTwo.backgroundColor = selectedColor
         case 3:
-            answerThree.backgroundColor = UIColor.green
+            answerThree.backgroundColor = selectedColor
         case 4:
-            answerFour.backgroundColor = UIColor.green
+            answerFour.backgroundColor = selectedColor
         default:
             break
         }
@@ -144,54 +147,69 @@ class QuizViewController: UIViewController {
     }
     
     func markButtonAsCorrect(position : Int ){
-        answerOne.backgroundColor = UIColor.white
-        answerTwo.backgroundColor = UIColor.white
-        answerThree.backgroundColor = UIColor.white
-        answerFour.backgroundColor = UIColor.white
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = unselectedColor
         switch position {
         case 1:
-            answerOne.backgroundColor = UIColor.green
+            answerOne.backgroundColor = rightColor
         case 2:
-            answerTwo.backgroundColor = UIColor.green
+            answerTwo.backgroundColor = rightColor
         case 3:
-            answerThree.backgroundColor = UIColor.green
+            answerThree.backgroundColor = rightColor
         case 4:
-            answerFour.backgroundColor = UIColor.green
+            answerFour.backgroundColor = rightColor
         default:
             break
         }
     }
     
     func markNeutralAnswer(answerPos :  Int){
-        markButtonAsCorrect(position: answerPos)
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = unselectedColor
+        switch answerPos {
+        case 1:
+            answerOne.backgroundColor = notAnswerColor
+        case 2:
+            answerTwo.backgroundColor = notAnswerColor
+        case 3:
+            answerThree.backgroundColor = notAnswerColor
+        case 4:
+            answerFour.backgroundColor = notAnswerColor
+        default:
+            break
+        }
     }
     
     func markAsWrong (answerPos : Int ,wrong : Int){
-        answerOne.backgroundColor = UIColor.white
-        answerTwo.backgroundColor = UIColor.white
-        answerThree.backgroundColor = UIColor.white
-        answerFour.backgroundColor = UIColor.white
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = unselectedColor
         switch answerPos {
         case 1:
-            answerOne.backgroundColor = UIColor.green
+            answerOne.backgroundColor = rightColor
         case 2:
-            answerTwo.backgroundColor = UIColor.green
+            answerTwo.backgroundColor = rightColor
         case 3:
-            answerThree.backgroundColor = UIColor.green
+            answerThree.backgroundColor = rightColor
         case 4:
-            answerFour.backgroundColor = UIColor.green
+            answerFour.backgroundColor = rightColor
         default:
             break
         }
         switch wrong {
         case 1:
-            answerOne.backgroundColor = UIColor.red
+            answerOne.backgroundColor = wrongColor
         case 2:
-            answerTwo.backgroundColor = UIColor.red
+            answerTwo.backgroundColor = wrongColor
         case 3:
-            answerThree.backgroundColor = UIColor.red
+            answerThree.backgroundColor = wrongColor
         case 4:
-            answerFour.backgroundColor = UIColor.red
+            answerFour.backgroundColor = wrongColor
         default:
             break
         }
@@ -292,6 +310,27 @@ class QuizViewController: UIViewController {
         answerTwo.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         answerThree.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         answerFour.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        answerOne.layer.cornerRadius = 16
+        answerTwo.layer.cornerRadius = 16
+        answerThree.layer.cornerRadius = 16
+        answerFour.layer.cornerRadius = 16
+        answerOne.layer.cornerRadius = 15
+        answerOne.layer.borderWidth = 1.0
+        answerOne.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
+        
+        answerTwo.layer.cornerRadius = 15
+        answerTwo.layer.borderWidth = 1.0
+        answerTwo.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
+        
+        answerThree.layer.cornerRadius = 15
+        answerThree.layer.borderWidth = 1.0
+        answerThree.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
+        
+        answerFour.layer.cornerRadius = 15
+        answerFour.layer.borderWidth = 1.0
+        answerFour.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -304,28 +343,28 @@ class QuizViewController: UIViewController {
     @IBAction func onAnswerOneSelected(_ sender: UIButton) {
         if selectedAnswers[actualPage] != 1 {
         selectedAnswers[actualPage] = 1
-        answerOne.backgroundColor = UIColor.green
-        answerTwo.backgroundColor = UIColor.white
-        answerThree.backgroundColor = UIColor.white
-        answerFour.backgroundColor = UIColor.white
+        answerOne.backgroundColor = selectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = unselectedColor
         }
         else {
             selectedAnswers[actualPage] = 0
-            answerOne.backgroundColor = UIColor.white
+            answerOne.backgroundColor = unselectedColor
         }
     }
     
     @IBAction func onAnswerTwoSelected(_ sender: UIButton) {
         if selectedAnswers[actualPage] != 2 {
         selectedAnswers[actualPage] = 2
-        answerOne.backgroundColor = UIColor.white
-        answerTwo.backgroundColor = UIColor.green
-        answerThree.backgroundColor = UIColor.white
-        answerFour.backgroundColor = UIColor.white
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = selectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = unselectedColor
         }
         else {
             selectedAnswers[actualPage] = 0
-            answerTwo.backgroundColor = UIColor.white
+            answerTwo.backgroundColor = unselectedColor
             
         }
 
@@ -335,14 +374,14 @@ class QuizViewController: UIViewController {
     @IBAction func onAnswerThreeSelected(_ sender: UIButton) {
         if selectedAnswers[actualPage] != 3 {
         selectedAnswers[actualPage] = 3
-        answerOne.backgroundColor = UIColor.white
-        answerTwo.backgroundColor = UIColor.white
-        answerThree.backgroundColor = UIColor.green
-        answerFour.backgroundColor = UIColor.white
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = selectedColor
+        answerFour.backgroundColor = unselectedColor
         }
         else{
             selectedAnswers[actualPage] = 0
-            answerThree.backgroundColor = UIColor.white
+            answerThree.backgroundColor = unselectedColor
             
         }
 
@@ -351,14 +390,14 @@ class QuizViewController: UIViewController {
     @IBAction func onAnswerFourSelected(_ sender: UIButton) {
         if selectedAnswers[actualPage] != 4 {
         selectedAnswers[actualPage] = 4
-        answerOne.backgroundColor = UIColor.white
-        answerTwo.backgroundColor = UIColor.white
-        answerThree.backgroundColor = UIColor.white
-        answerFour.backgroundColor = UIColor.green
+        answerOne.backgroundColor = unselectedColor
+        answerTwo.backgroundColor = unselectedColor
+        answerThree.backgroundColor = unselectedColor
+        answerFour.backgroundColor = selectedColor
         }
         else {
             selectedAnswers[actualPage] = 0
-            answerFour.backgroundColor = UIColor.white
+            answerFour.backgroundColor = unselectedColor
             
         }
 
