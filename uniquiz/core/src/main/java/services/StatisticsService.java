@@ -9,7 +9,7 @@ import repositories.UserRepository;
  * Created by fabiolourenco on 09/09/17.
  */
 public class StatisticsService {
-    public static void recalculateUserStatistics(Solution solution){
+    public synchronized static void recalculateUserStatistics(Solution solution){
         //new Thread(new Runnable() {
           //  @Override
           //  public void run() {

@@ -11,14 +11,14 @@ import repositories.UserRepository;
  * Created by fabiolourenco on 09/09/17.
  */
 public class QuizzesPopularityService {
-    public static void incrementPopularity(Solution solution){
+    public synchronized static void incrementPopularity(Solution solution){
 
         QuizRepository quizRepository = new QuizRepository();
-        Quiz quiz = quizRepository.findOne(solution.getQuizPk()).get();
+            Quiz quiz = quizRepository.findOne(solution.getQuizPk()).get();
 
-        quiz.incrementPopularity();
+            quiz.incrementPopularity();
 
-        quizRepository.save(quiz);
+            quizRepository.save(quiz);
 
     }
 }

@@ -178,7 +178,7 @@ public class Quiz implements Serializable {
         return totalNumQuestions;
     }
 
-    public void addRating(Rating rating){
+    public synchronized void addRating(Rating rating){
         boolean found  = false;
         String userPk = rating.getUserPk();
         for(Rating r : ratings){
@@ -196,7 +196,7 @@ public class Quiz implements Serializable {
         }
     }
 
-    
+
 
     @Override
     public boolean equals(Object o) {
@@ -221,7 +221,7 @@ public class Quiz implements Serializable {
         return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating);
     }
 
-    public void setPopularityCounter(long popularityCounter) {
+    public synchronized void setPopularityCounter(long popularityCounter) {
         this.popularityCounter = popularityCounter;
     }
 }
