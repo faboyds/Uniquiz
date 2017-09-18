@@ -1,7 +1,7 @@
 ## UniQuiz 
 
 UniQuiz is a project started during the Make or Break event by Fábio Lourenço, Luis Gouveia, Pedro Neto and Rafael Santos. 
-The purpose of this product is to establish beetween teachers and students a better way of communication. So using this service, every student is able to solve a bunch of quizzez developed by professors all over the world. 
+The purpose of this product is to establish beetween teachers and students a better way of communication. So using this service, every student is able to solve a bunch of quizzes developed by professors all around the world. 
 
 
 
