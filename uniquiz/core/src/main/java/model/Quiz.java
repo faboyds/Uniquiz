@@ -5,6 +5,7 @@ import dto.QuizDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -187,6 +188,13 @@ public class Quiz implements Serializable {
         return totalNumQuestions;
     }
 
+    /**
+     * Method to add or change a rating
+     * Checks if the Rating exists
+     * if exists edits the rating and recalculates the averageRating
+     * Else adds a new Rating a recalculates the averageRating
+     * @param rating
+     */
     public synchronized void addRating(Rating rating){
         boolean found  = false;
         String userPk = rating.getUserPk();
@@ -223,11 +231,11 @@ public class Quiz implements Serializable {
     }
 
     public QuizDTO toDTO(){
-        List<QuestionDTO> questions = new LinkedList<>();
-        for(Question q : this.questions){
-            questions.add(q.toDTO());
+        if(numQuestionsPerSolution > (totalNumQuestions/2))
+            return new QuizDTO(this.pk, generateRandomSuperiorQuestionList(), difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating, this.author.getUsername());
+        else{
+            return new QuizDTO(this.pk, generateRandomInferiorQuestionList(), difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating, this.author.getUsername());
         }
-        return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating, this.author.getUsername());
     }
 
     public synchronized void setPopularityCounter(long popularityCounter) {
@@ -243,4 +251,40 @@ public class Quiz implements Serializable {
              this.author = author;
         else throw new IllegalArgumentException();
     }
+
+    private List<QuestionDTO> generateRandomInferiorQuestionList(){
+        ArrayList<QuestionDTO> newList ;
+        int max = getNumQuestionsPerSolution();
+        newList = new ArrayList<>();
+        int offSet = (int) Math.random() % totalNumQuestions;
+        int step = (int) Math.random() % max; //Check
+        for (int i = 0;  i< max ;  i++){
+           newList.add(questions.get(offSet).toDTO());
+           offSet += step;
+           if (offSet >= totalNumQuestions) offSet -= totalNumQuestions;
+        }
+        return  newList;
+    }
+
+
+
+    private List<QuestionDTO> generateRandomSuperiorQuestionList(){
+        ArrayList<Question> newList ;
+        int max = totalNumQuestions -getNumQuestionsPerSolution();
+        newList  = new ArrayList<>(questions);
+
+        int offSet = (int) Math.random() % totalNumQuestions;
+        int step = (int) Math.random() % max; //Check
+        for (int i = 0;  i< max ;  i++){
+                newList.remove(offSet);
+            offSet += step;
+            if (offSet >= totalNumQuestions - i ) offSet -= (totalNumQuestions-i);
+        }
+        List<QuestionDTO> questionsDTO = new LinkedList<>();
+        for(Question q : newList){
+            questionsDTO.add(q.toDTO());
+        }
+        return questionsDTO;
+    }
+
 }

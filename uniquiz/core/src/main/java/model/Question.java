@@ -23,12 +23,21 @@ public class Question implements Serializable {
     @Version
     private Long version;
 
+    /**
+     * Question content
+     */
     private String question;
 
+    /**
+     * List of possible answers
+     */
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "QUESTION_PK")
     private List<Answer> answers;
 
+    /**
+     * Question's right answer Justification
+     */
     private String justification;
 
     public Question() {
@@ -40,26 +49,50 @@ public class Question implements Serializable {
         this.answers = new LinkedList<>();
     }
 
+    /**
+     * Method to get the Database Pk
+     * @return
+     */
     public Long getPk() {
         return pk;
     }
 
+    /**
+     * Method to set the DataBase pk
+     * @param pk
+     */
     public void setPk(Long pk) {
         this.pk = pk;
     }
 
+    /**
+     * Method to get the question's content
+     * @return
+     */
     public String getQuestion() {
         return question;
     }
 
+    /**
+     * Method to set the question's content
+     * @param question
+     */
     public void setQuestion(String question) {
         this.question = question;
     }
 
+    /**
+     * Method to get the list of answers
+     * @return
+     */
     public List<Answer> getAnswers() {
         return answers;
     }
 
+    /**
+     * Method to set the list of answers
+     * @param answers
+     */
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }

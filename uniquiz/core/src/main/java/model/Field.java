@@ -19,7 +19,9 @@ public class Field implements Serializable {
 
     @Version
     private Long version;
-
+    /**
+     * Field name
+     */
     private String fieldName;
 
     public Field() {
@@ -29,18 +31,34 @@ public class Field implements Serializable {
         this.fieldName = fieldName;
     }
 
+    /**
+     * Method to get the Database Pk
+     * @return
+     */
     public Long getPk() {
         return pk;
     }
 
+    /**
+     * Method to define the Database pk
+     * @param pk
+     */
     public void setPk(Long pk) {
         this.pk = pk;
     }
 
+    /**
+     * Method to get the field's name
+     * @return
+     */
     public String getFieldName() {
         return fieldName;
     }
 
+    /**
+     * Method to define the field's name
+     * @param fieldName
+     */
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
     }
