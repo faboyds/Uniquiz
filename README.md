@@ -1,11 +1,42 @@
-## UniQuiz 
-
-UniQuiz is a project started during the Make or Break event by Fábio Lourenço, Luis Gouveia, Pedro Neto and Rafael Santos. 
+# UniQuiz
+ 
 The purpose of this product is to establish beetween teachers and students a better way of communication. So using this service, every student is able to solve a bunch of quizzes developed by professors all around the world. 
 
+## Getting Started
 
+For Development : 
+1- Clone the project for your machine.
+2- Open Uniquiz/Uniquiz with IntelliJ IDE to obtain the WebAPI
+3- Open Uniquiz/UniquiziOS with Xcode to obtain the iOS app 
+4- Open Uniquiz/UniquizAndroid with AndroidStudio to obtain the Android app
 
-# This project is licensed under the terms of the MIT license. 
+To Run : 
+1- Run the WebAPI
+2- Run the Android or the iOS app 
+
+### Prerequisites
+
+WebAPI - Desktop environment with Java installed
+iOS Mobile App - MacOS with Xcode 9 for development or iOS device for install
+Android Mobile App - Android Studio or IntelliJ IDE for development or Android device for install
+
+## Built With
+
+* [Spring-Boot] - The web framework used
+* [Maven](https://maven.apache.org/) - WebAPI's Dependency Management
+* [Gradle] - Android's Dependency Management
+* [CocoaPods] - iOS's Dependency Management
+* [AndroidStudio] - Android development IDE
+* [Xcode 9] - iOS development IDE
+* [IntelliJ] - WebAPI development IDE
+
+## Authors
+
+* The project started during the Make or Break event by Fábio Lourenço, Luis Gouveia, Pedro Neto and Rafael Santos.
+
+## License
+
+This project is licensed under the terms of the MIT license. 
 
 Copyright 2017 Phoenix
 
