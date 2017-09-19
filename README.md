@@ -5,20 +5,20 @@ The purpose of this product is to establish beetween teachers and students a bet
 ## Getting Started
 
 For Development : 
-1- Clone the project for your machine.
-2- Open Uniquiz/Uniquiz with IntelliJ IDE to obtain the WebAPI
-3- Open Uniquiz/UniquiziOS with Xcode to obtain the iOS app 
-4- Open Uniquiz/UniquizAndroid with AndroidStudio to obtain the Android app
+* Clone the project for your machine.
+* Open Uniquiz/Uniquiz with IntelliJ IDE to obtain the WebAPI
+* Open Uniquiz/UniquiziOS with Xcode to obtain the iOS app 
+* Open Uniquiz/UniquizAndroid with AndroidStudio to obtain the Android app
 
 To Run : 
-1- Run the WebAPI
-2- Run the Android or the iOS app 
+* Run the WebAPI
+* Run the Android or the iOS app 
 
 ### Prerequisites
 
-WebAPI - Desktop environment with Java installed
-iOS Mobile App - MacOS with Xcode 9 for development or iOS device for install
-Android Mobile App - Android Studio or IntelliJ IDE for development or Android device for install
+* WebAPI - Desktop environment with Java installed
+* iOS Mobile App - MacOS with Xcode 9 for development or iOS device for install
+* Android Mobile App - Android Studio or IntelliJ IDE for development or Android device for install
 
 ## Built With
 
