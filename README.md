@@ -29,6 +29,7 @@ To Run :
 * [AndroidStudio] - Android development IDE
 * [Xcode 9] - iOS development IDE
 * [IntelliJ] - WebAPI development IDE
+* [Eclipse Link + H2] - JPA Database
 
 ## Authors
 
