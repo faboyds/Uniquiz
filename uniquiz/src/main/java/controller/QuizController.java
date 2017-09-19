@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import repositories.QuizRepository;
+import services.RateQuizService;
 
 import javax.persistence.NoResultException;
 import java.util.LinkedList;
@@ -122,16 +123,10 @@ public class QuizController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/rate/{quizPk}")
-    public ResponseEntity<QuizDTO> rateQuiz(@PathVariable Long quizPk, @RequestBody Rating rating) {
+    public ResponseEntity<Void> rateQuiz(@PathVariable Long quizPk, @RequestBody Rating rating) {
         try {
-            QuizRepository repo = new QuizRepository();
-            Quiz newQuiz = repo.findOne(quizPk).get();
-
-            newQuiz.addRating(rating);
-
-            newQuiz = repo.save(newQuiz);
-
-            return new ResponseEntity<>(newQuiz.toDTO(), HttpStatus.OK);
+            Quiz newQuiz = new RateQuizService().rateService(quizPk, rating);
+            return new ResponseEntity<>(HttpStatus.OK);
 
         }catch (DataIntegrityViolationException e){
             return new ResponseEntity<>(HttpStatus.CONFLICT);

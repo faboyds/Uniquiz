@@ -32,6 +32,8 @@ public class Quiz implements Serializable {
     private Long coursePk;
     private String courseName;
 
+    private User author;
+
     private String title;
 
     private long popularityCounter;
@@ -51,7 +53,7 @@ public class Quiz implements Serializable {
     }
 
     public Quiz(Difficulty difficulty, Long subjectPk, String subjectName, Long coursePk,
-                String courseName, String title, int numQuestionsPerSolution, List<Question> questions) {
+                String courseName, String title, int numQuestionsPerSolution, List<Question> questions, User author) {
 
         setDifficulty(difficulty);
         setSubjectPk(subjectPk);
@@ -61,6 +63,7 @@ public class Quiz implements Serializable {
         setTitle(title);
         setQuestions(questions);
         setNumQuestionsPerSolution(numQuestionsPerSolution);
+        setAuthor(author);
     }
 
     public Quiz(Quiz otherQuiz){
@@ -74,6 +77,8 @@ public class Quiz implements Serializable {
         setNumQuestionsPerSolution(otherQuiz.numQuestionsPerSolution);
         setPopularityCounter(otherQuiz.popularityCounter);
         setRatings(otherQuiz.ratings);
+        setAverageRating(otherQuiz.averageRating);
+        setAuthor(otherQuiz.getAuthor());
     }
 
     public Long getPk() {
@@ -166,6 +171,10 @@ public class Quiz implements Serializable {
         return averageRating;
     }
 
+    public void setAverageRating(Double rating){
+        averageRating = rating;
+    }
+
     public List<Rating> getRatings() {
         return ratings;
     }
@@ -218,10 +227,20 @@ public class Quiz implements Serializable {
         for(Question q : this.questions){
             questions.add(q.toDTO());
         }
-        return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating);
+        return new QuizDTO(this.pk, questions, difficulty.name(), this.subjectPk, this.subjectName, this.coursePk, this.courseName, this.title, popularityCounter, this.averageRating, this.author.getUsername());
     }
 
     public synchronized void setPopularityCounter(long popularityCounter) {
         this.popularityCounter = popularityCounter;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        if(author.getRoles().contains(User.Roles.TEACHER))
+             this.author = author;
+        else throw new IllegalArgumentException();
     }
 }

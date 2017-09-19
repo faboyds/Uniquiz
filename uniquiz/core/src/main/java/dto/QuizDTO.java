@@ -17,10 +17,11 @@ public class QuizDTO {
     private String title;
     private Long popularityCounter;
     private Double averageRating;
+    private String author ;
 
     public QuizDTO(Long pk, List<QuestionDTO> questions, String difficulty,
                     Long subjectPk, String subjectName, Long coursePk, String courseName, String title,
-                   long popularityCounter, double averageRating){
+                   long popularityCounter, double averageRating, String author ){
         this.setPk(pk);
         this.setQuestions(questions);
         this.setDifficulty(difficulty);
@@ -31,10 +32,13 @@ public class QuizDTO {
         this.setTitle(title);
         this.setPopularityCounter(popularityCounter);
         this.setAverageRating(averageRating);
+        this.setAuthor(author);
     }
 
     public QuizDTO() {
     }
+
+
 
     public Long getPk() {
         return pk;
@@ -110,5 +114,13 @@ public class QuizDTO {
 
     public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
