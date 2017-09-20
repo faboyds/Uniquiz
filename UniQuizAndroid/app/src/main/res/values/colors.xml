@@ -6,6 +6,7 @@
     <color name="colorAccent2">#FFFFFF</color>
     <color name="colorAnswer">#88c4d8</color>
     <color name="colorWrongAnswer">#fb4141</color>
-    <color name="colroRightAnswer">#95d64a</color>
+    <color name="colorRightAnswer">#95d64a</color>
     <color name="colorBackground">#F0F0F0</color>
+    <color name="colorUnanswered">#FDD835</color>
 </resources>

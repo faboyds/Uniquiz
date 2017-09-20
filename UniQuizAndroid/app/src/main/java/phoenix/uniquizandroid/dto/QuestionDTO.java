@@ -11,11 +11,13 @@ public class QuestionDTO implements Serializable{
     private Long pk;
     private String question;
     private List<AnswerDTO> answers;
+    private String justification;
 
-    public QuestionDTO(Long pk, String question, List<AnswerDTO> answers){
+    public QuestionDTO(Long pk, String question, List<AnswerDTO> answers, String justification){
         this.setPk(pk);
         this.setQuestion(question);
         this.setAnswers(answers);
+        this.setJustification(justification);
     }
 
     public QuestionDTO() {
@@ -43,5 +45,13 @@ public class QuestionDTO implements Serializable{
 
     public void setAnswers(List<AnswerDTO> answers) {
         this.answers = answers;
+    }
+
+    public String getJustification() {
+        return justification;
+    }
+
+    public void setJustification(String justification) {
+        this.justification = justification;
     }
 }

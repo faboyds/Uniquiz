@@ -1,21 +1,14 @@
 package phoenix.uniquizandroid.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.springframework.http.HttpEntity;
@@ -28,7 +21,6 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
-import java.util.Map;
 
 import phoenix.uniquizandroid.R;
 import phoenix.uniquizandroid.dto.AnswerDTO;
@@ -223,10 +215,8 @@ public class QuizActivity extends AppCompatActivity {
             }
         }else{
             int answer = quizAnswers[questionsListPos];
-            answer--;
             if(answer>0){
-                if(!questions.get(questionsListPos).getAnswers().get(answer).isRightAnswer()){
-                    answer++;
+                if(!questions.get(questionsListPos).getAnswers().get(answer-1).isRightAnswer()){
                     switch(answer){
                         case 1:
                             resetButtonsColor();
@@ -249,27 +239,33 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 }
             }
-            answer = 1;
+
+            int colorRightAnswer = getResources().getColor(R.color.colorRightAnswer, null);
+            if(answer == 0){
+                colorRightAnswer = getResources().getColor(R.color.colorUnanswered, null);
+            }
+
+            int rightAnswer = 1;
             for(AnswerDTO correctAns : questions.get(questionsListPos).getAnswers()){
                 if(correctAns.isRightAnswer()){
                     break;
                 }else{
-                    answer++;
+                    rightAnswer++;
                 }
             }
 
-            switch(answer){
+            switch(rightAnswer){
                 case 1:
-                    answer1Button.setBackgroundColor(getResources().getColor(R.color.colroRightAnswer, null));
+                    answer1Button.setBackgroundColor(colorRightAnswer);
                     break;
                 case 2:
-                    answer2Button.setBackgroundColor(getResources().getColor(R.color.colroRightAnswer, null));
+                    answer2Button.setBackgroundColor(colorRightAnswer);
                     break;
                 case 3:
-                    answer3Button.setBackgroundColor(getResources().getColor(R.color.colroRightAnswer, null));
+                    answer3Button.setBackgroundColor(colorRightAnswer);
                     break;
                 case 4:
-                    answer4Button.setBackgroundColor(getResources().getColor(R.color.colroRightAnswer, null));
+                    answer4Button.setBackgroundColor(colorRightAnswer);
                     break;
             }
 
