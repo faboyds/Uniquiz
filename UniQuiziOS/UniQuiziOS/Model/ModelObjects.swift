@@ -33,6 +33,7 @@ struct Question : Codable {
     let pk : UInt64
     let question : String
     let answers : [Answer]
+    let justification : String
 }
 
 struct Quiz : Codable {
@@ -41,8 +42,11 @@ struct Quiz : Codable {
     let difficulty :  String
     let subjectPk : Int
     let coursePk : Int
+    let courseName : String
     let subjectName : String
     let title : String
+    let averageRating : Double
+    let author : String
 }
 struct SimplifiedQuiz  : Codable {
     let pk : Int
@@ -51,6 +55,8 @@ struct SimplifiedQuiz  : Codable {
     let coursePk : Int
     let subjectName : String
     let title : String
+    let averageRating : Double
+    let author : String
     
     init (_ quiz: Quiz){
         self.pk = quiz.pk
@@ -59,6 +65,8 @@ struct SimplifiedQuiz  : Codable {
         self.subjectName = quiz.subjectName
         self.title = quiz.title
         self.subjectPk = quiz.subjectPk
+        self.averageRating = quiz.averageRating
+        self.author = quiz.author
     }
 }
 

@@ -47,6 +47,7 @@ public class Question implements Serializable {
     public Question(String question) {
         this.question = question;
         this.answers = new LinkedList<>();
+        justification = "" ;
     }
 
     /**

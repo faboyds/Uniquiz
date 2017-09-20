@@ -21,7 +21,7 @@ public class LoginController {
     public ResponseEntity<UserDTO> sendRequest(@RequestBody UserRequest userRequest) {
         try {
             return new ResponseEntity<>(
-                    new UserRepository().findByUsernameAndPassword(userRequest.getUsername(), userRequest.getPassword()).toDTO(),
+                    new UserRepository().findByUsernameAndPassword(userRequest.getUsername().trim(), userRequest.getPassword().trim()).toDTO(),
                     HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

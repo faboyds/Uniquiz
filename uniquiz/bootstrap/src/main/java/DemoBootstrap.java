@@ -2,9 +2,7 @@ import model.*;
 import org.eclipse.persistence.jpa.jpql.parser.QualifiedIdentificationVariableBNF;
 import repositories.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by fabiolourenco on 09/09/17.
@@ -21,7 +19,10 @@ public class DemoBootstrap {
         UserRepository userRepository = new UserRepository();
 
         userRepository.save(new User("test", "test", "test", "phoenixmakeorbreak@test.com"));
-
+        User author = new User("pedro", "test", "pedro", "pedro@test.com");
+        Set<User.Roles> roles = new HashSet<>();
+        roles.add(User.Roles.TEACHER);
+        author.setRoles(roles);
 
         //CREATE FIELDS
         FieldRepository fieldRepository = new FieldRepository();
@@ -161,7 +162,7 @@ public class DemoBootstrap {
         questionList.add(question5);
 
         Quiz quiz = new Quiz(Difficulty.NORMAL, subject5.getPk(), subject5.getSubjectName(),
-                course1.getPk(), course1.getCourseName(), "Princípios da computação I", questionList.size(), questionList);
+                course1.getPk(), course1.getCourseName(), "Princípios da computação I", questionList.size(), questionList,author);
 
         quizRepository.save(quiz);
         //SAVED QUIZ 1 -----------------------------------------------------------------------------------------------------
@@ -209,7 +210,7 @@ public class DemoBootstrap {
         questionList.add(question5);
 
         Quiz quiz2 = new Quiz(Difficulty.HARD, subject6.getPk(), subject6.getSubjectName(),
-                course1.getPk(), course1.getCourseName(), "Redes de computadores", questionList.size(), questionList);
+                course1.getPk(), course1.getCourseName(), "Redes de computadores", questionList.size(), questionList,author);
 
         quizRepository.save(quiz2);
         //SAVED QUIZ 2 ------------------------------------------------------------------------------------------------------

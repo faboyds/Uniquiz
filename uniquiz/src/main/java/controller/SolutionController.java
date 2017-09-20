@@ -79,8 +79,8 @@ public class SolutionController {
 
             solution = repo.save(solution);
 
-            StatisticsService.recalculateUserStatistics(solution);
-            QuizzesPopularityService.incrementPopularity(solution);
+            new StatisticsService().recalculateUserStatistics(solution);
+            new QuizzesPopularityService().incrementPopularity(solution);
 
             return new ResponseEntity<>(solution.toDTO(), HttpStatus.CREATED);
 

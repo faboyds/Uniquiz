@@ -10,6 +10,7 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    @IBOutlet var countLabel: UILabel!
     @IBOutlet weak var rightSwipeButton: UIButton!
     @IBOutlet weak var leftSwipeButton: UIButton!
     
@@ -25,10 +26,10 @@ class QuizViewController: UIViewController {
     var revision = false
     var selectedAnswers = [Int]()
     var notAnswerColor = UIColor(hexString : "#FDD835")
-    var selectedColor = UIColor(hexString: "#006064")
+    var selectedColor = UIColor(hexString: "#d1d1e0")
     var rightColor = UIColor(hexString: "#AED581")
-    var wrongColor = UIColor(hexString: "#FF7043")
-    var unselectedColor = UIColor(hexString : "#00BDEE")
+    var wrongColor = UIColor(hexString: "#ff8566")
+    var unselectedColor = UIColor(hexString : "#FFFFFF")
     func sendResolution(_ resolution : SolutionPost){
         //Post
         
@@ -118,6 +119,8 @@ class QuizViewController: UIViewController {
     }
     
     func changeButtonsContentWhileDoingQuiz(){
+        countLabel.text = "\(String(actualPage+1))/\(String((quiz?.questions.count)!))"
+    
         answerFour.isEnabled = false
         answerThree.isEnabled = false
         answerThree.setTitle("", for: UIControlState.disabled)
@@ -217,6 +220,7 @@ class QuizViewController: UIViewController {
     
     func changeButtonsContentWhileOnRevision(){
         questionLabel.text  = (quiz?.questions[actualPage].question)!
+        countLabel.text = "\(String(actualPage+1))/\(String((quiz?.questions.count)!))"
         answerOne.setTitle((quiz?.questions[actualPage].answers[0].answer)!, for: UIControlState.disabled)
         answerTwo.setTitle((quiz?.questions[actualPage].answers[1].answer)!, for: UIControlState.disabled)
         if ((quiz?.questions[actualPage].answers.count)! > 2){answerThree.setTitle((quiz?.questions[actualPage].answers[2].answer)!, for: UIControlState.disabled)
@@ -284,6 +288,7 @@ class QuizViewController: UIViewController {
     
     @IBAction func onSwipeLeft(_ sender: UIButton) {
             actualPage -= 1
+        
         if !revision {changeButtonsContentWhileDoingQuiz()}
         else {changeButtonsContentWhileOnRevision()}
         if actualPage == 0  {
@@ -331,7 +336,11 @@ class QuizViewController: UIViewController {
         answerFour.layer.borderWidth = 1.0
         answerFour.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
         
+        countLabel.text = "\(String(actualPage+1))/\(String((quiz?.questions.count)!))"
+        
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -55,7 +55,7 @@
 				<key>NSIncludeSubdomains</key>
 				<true/>
 			</dict>
-			<key>8f76071b.ngrok.io</key>
+			<key>ee9c6d0f.ngrok.io</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

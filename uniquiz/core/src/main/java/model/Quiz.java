@@ -166,6 +166,7 @@ public class Quiz implements Serializable {
         if(numQuestionsPerSolution < 0 || numQuestionsPerSolution > totalNumQuestions)
             throw new IllegalArgumentException("To resolve a quiz, must be shown at least 1 question and less than the total question.");
         this.numQuestionsPerSolution = numQuestionsPerSolution;
+        if (numQuestionsPerSolution == 0) numQuestionsPerSolution = totalNumQuestions;
     }
 
     public double getAverageRating() {
@@ -271,14 +272,16 @@ public class Quiz implements Serializable {
     private List<QuestionDTO> generateRandomSuperiorQuestionList(){
         ArrayList<Question> newList ;
         int max = totalNumQuestions -getNumQuestionsPerSolution();
-        newList  = new ArrayList<>(questions);
 
-        int offSet = (int) Math.random() % totalNumQuestions;
-        int step = (int) Math.random() % max; //Check
-        for (int i = 0;  i< max ;  i++){
+        newList  = new ArrayList<>(questions);
+        if (max != 0) {
+            int offSet = (int) Math.random() % totalNumQuestions;
+            int step = (int) Math.random() % max; //Check
+            for (int i = 0; i < max; i++) {
                 newList.remove(offSet);
-            offSet += step;
-            if (offSet >= totalNumQuestions - i ) offSet -= (totalNumQuestions-i);
+                offSet += step;
+                if (offSet >= totalNumQuestions - i) offSet -= (totalNumQuestions - i);
+            }
         }
         List<QuestionDTO> questionsDTO = new LinkedList<>();
         for(Question q : newList){
