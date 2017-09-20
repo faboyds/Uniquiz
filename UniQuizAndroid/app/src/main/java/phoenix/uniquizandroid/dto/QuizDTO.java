@@ -17,9 +17,11 @@ public class QuizDTO implements Serializable{
     private String courseName;
     private String title;
     private Long popularityCounter;
+    private Double averageRating;
+    private String author;
 
     public QuizDTO(Long pk, List<QuestionDTO> questions, String difficulty,
-                   Long subjectPk, String subjectName, Long coursePk, String courseName, String title, long popularityCounter){
+                   Long subjectPk, String subjectName, Long coursePk, String courseName, String title, long popularityCounter, Double averageRating, String author){
         this.setPk(pk);
         this.setQuestions(questions);
         this.setDifficulty(difficulty);
@@ -29,6 +31,8 @@ public class QuizDTO implements Serializable{
         this.setCourseName(courseName);
         this.setTitle(title);
         this.setPopularityCounter(popularityCounter);
+        this.setAverageRating(averageRating);
+        this.setAuthor(author);
     }
 
     public QuizDTO() {
@@ -100,5 +104,21 @@ public class QuizDTO implements Serializable{
 
     public void setPopularityCounter(Long popularityCounter) {
         this.popularityCounter = popularityCounter;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

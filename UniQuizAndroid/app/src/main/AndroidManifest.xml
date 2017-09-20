@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".activity.CoursesActivity" />
         <activity android:name=".activity.QuizzesActivity" />
+        <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.QuizPreviewActivity"/>
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
